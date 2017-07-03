@@ -8,10 +8,21 @@ import { routing, appRoutingProviders } from "./app.routing";
 
 // Components
 import { AppComponent } from './app.component';
+import { ErrorComponent } from "./components/error.component";
+import { HomeComponent } from './components/home.component';
+import { NavBarComponent } from "./components/navbar.component";
+import { LoginComponent } from "./components/login.component";
+
+// Services
+import { AuthService } from "./services/auth.service";
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ErrorComponent,
+    HomeComponent,
+    NavBarComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -19,7 +30,10 @@ import { AppComponent } from './app.component';
     HttpModule,
     routing
   ],
-  providers: [appRoutingProviders],
+  providers: [
+    appRoutingProviders,
+    AuthService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
