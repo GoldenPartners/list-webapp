@@ -22,6 +22,7 @@ export class NavBarComponent {
   logout() {
     console.log('logout..');
     this.authService.logout();
+    this.loged = false;
     this.router.navigate(['']);
   }
 }

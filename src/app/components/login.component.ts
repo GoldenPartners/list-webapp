@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 
@@ -11,6 +11,9 @@ export class LoginComponent {
   model: any = {};
   loading = false;
   error = '';
+
+  @Output()
+  onLogin = new EventEmitter();
 
   constructor(private router: Router, private authService: AuthService) {
 
@@ -26,6 +29,7 @@ export class LoginComponent {
       result => {
         if (result === true) {
             // login successful
+            this.informSuccessLogin();
             this.router.navigate(['home']);
         } else {
             // login failed
@@ -36,5 +40,10 @@ export class LoginComponent {
         this.loading = false;
         this.error = error;
       });
+  }
+
+  informSuccessLogin() {
+    console.log('informamos el login correcto mediante el evento onLogin');
+    this.onLogin.emit({loged: true});
   }
 }

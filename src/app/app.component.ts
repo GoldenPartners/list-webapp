@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  private title: string;
+  private title: String;
 
   constructor () {
     this.title = 'list!';
