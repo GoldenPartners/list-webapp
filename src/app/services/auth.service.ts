@@ -5,6 +5,7 @@ import { GLOBAL } from "./global";
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
+import { User } from "../models/user";
 
 @Injectable()
 export class AuthService {
@@ -25,7 +26,7 @@ export class AuthService {
         let token = response.json() && response.json().token;
         if (token) {
           // store username and jwt token in local storage to keep user logged in between page refreshes
-          let currentUser = JSON.stringify({ username: username, token: token });
+          let currentUser = JSON.stringify(this.makeUser(response.json()));
           localStorage.setItem('currentUser', currentUser);
 
           // return true to indicate successful login
@@ -37,7 +38,7 @@ export class AuthService {
       }).catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
-  isLoged(): Boolean {
+  isLogged(): Boolean {
     let token: String = this.getToken();
     return token && token.length > 0;
   }
@@ -51,5 +52,14 @@ export class AuthService {
   logout(): void {
     // clear token remove user from local storage to log user out
     localStorage.removeItem('currentUser');
+  }
+
+  private makeUser(authResp): User {
+    let authorities = new Array<String>();
+    authResp.user.authorities.forEach(function(item, index, array) {
+      authorities.push(item.authority);
+    });
+
+    return new User(authResp.user.name, authResp.user.email, authResp.user.phone, authResp.user.enabled, authResp.token, authorities);
   }
 }

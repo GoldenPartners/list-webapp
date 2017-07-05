@@ -15,12 +15,11 @@ export class NavBarComponent {
     this.brand = 'list!';
   }
 
-  ngOnInit() {
-    this.loged = this.authService.isLoged();
+  ngDoCheck() {
+    this.loged = this.authService.isLogged();
   }
 
   logout() {
-    console.log('logout..');
     this.authService.logout();
     this.loged = false;
     this.router.navigate(['']);

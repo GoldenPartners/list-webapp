@@ -1,8 +1,10 @@
-export class user {
+export class User {
   constructor(
-    public id : string,
-    public title : string,
-    public body : string,
-    public signature : string
+    public name : string,
+    public email : string,
+    public phone : string,
+    public enabled : string,
+    public token : string,
+    public authorities : Array<String>
   ) { }
 }

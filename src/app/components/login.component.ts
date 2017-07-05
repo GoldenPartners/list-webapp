@@ -12,9 +12,6 @@ export class LoginComponent {
   loading = false;
   error = '';
 
-  @Output()
-  onLogin = new EventEmitter();
-
   constructor(private router: Router, private authService: AuthService) {
 
   }
@@ -29,7 +26,6 @@ export class LoginComponent {
       result => {
         if (result === true) {
             // login successful
-            this.informSuccessLogin();
             this.router.navigate(['home']);
         } else {
             // login failed
@@ -40,10 +36,5 @@ export class LoginComponent {
         this.loading = false;
         this.error = error;
       });
-  }
-
-  informSuccessLogin() {
-    console.log('informamos el login correcto mediante el evento onLogin');
-    this.onLogin.emit({loged: true});
   }
 }
