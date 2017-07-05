@@ -12,6 +12,7 @@ import { ErrorComponent } from "./components/error.component";
 import { HomeComponent } from './components/home.component';
 import { NavBarComponent } from "./components/navbar.component";
 import { LoginComponent } from "./components/login.component";
+import { UsersComponent } from "./users/components/users.component";
 
 // Services
 import { AuthService } from "./services/auth.service";
@@ -23,7 +24,8 @@ import { CanActivateGuard} from "./guards/canactivate.guard";
     ErrorComponent,
     HomeComponent,
     NavBarComponent,
-    LoginComponent
+    LoginComponent,
+    UsersComponent
   ],
   imports: [
     BrowserModule,
