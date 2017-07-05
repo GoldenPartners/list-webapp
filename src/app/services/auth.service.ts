@@ -26,7 +26,8 @@ export class AuthService {
         let token = response.json() && response.json().token;
         if (token) {
           // store username and jwt token in local storage to keep user logged in between page refreshes
-          let currentUser = JSON.stringify(this.makeUser(response.json()));
+          let user: User = this.makeUser(response.json());
+          let currentUser = JSON.stringify(user);
           localStorage.setItem('currentUser', currentUser);
 
           // return true to indicate successful login
@@ -52,6 +53,16 @@ export class AuthService {
   logout(): void {
     // clear token remove user from local storage to log user out
     localStorage.removeItem('currentUser');
+  }
+
+  currentUserIs(role: String) : Boolean {
+    let user = JSON.parse(localStorage.getItem('currentUser'));
+
+    let r = user.authorities.find((item, index, arr) => {
+      return item.toLowerCase() === role.toLowerCase();
+    });
+
+    return r ? true : false;
   }
 
   private makeUser(authResp): User {
