@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 
 @Component({
-    selector: 'users',
-    templateUrl: '../views/users.component.html'
+    selector: 'user',
+    templateUrl: '../views/user.component.html'
 })
-export class UsersComponent {
+export class UserComponent {
   msg: String;
 
   constructor() {
