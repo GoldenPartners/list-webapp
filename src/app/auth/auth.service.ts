@@ -1,11 +1,11 @@
 import { Injectable } from "@angular/core";
 import { Http, Response, Headers } from "@angular/http";
 import { Observable } from 'rxjs/Rx';
-import { GLOBAL } from "./global";
+import { GLOBAL } from "../shared/services/global";
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
-import { User } from "../models/user";
+import { User } from "./user";
 
 @Injectable()
 export class AuthService {
@@ -39,12 +39,12 @@ export class AuthService {
       }).catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
-  isLogged(): Boolean {
+  isLogged(): boolean {
     let token: String = this.getToken();
     return token && token.length > 0;
   }
 
-  getToken(): String {
+  getToken(): string {
     var currentUser = JSON.parse(localStorage.getItem('currentUser'));
     var token = currentUser && currentUser.token;
     return token ? token : "";
@@ -55,7 +55,7 @@ export class AuthService {
     localStorage.removeItem('currentUser');
   }
 
-  currentUserIs(role: String) : Boolean {
+  currentUserIs(role: String) : boolean {
     let user = JSON.parse(localStorage.getItem('currentUser'));
 
     let r = user.authorities.find((item, index, arr) => {

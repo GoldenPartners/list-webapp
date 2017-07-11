@@ -4,8 +4,8 @@ import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
-import { AuthService } from "../../services/auth.service";
-import { GLOBAL } from "../../services/global";
+import { AuthService } from "../../auth/auth.service";
+import { GLOBAL } from "../../shared/services/global";
 import { User } from "../models/user";
 
 @Injectable()

@@ -1,19 +1,21 @@
 import { ModuleWithProviders } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
-import { CanActivateGuard } from "./guards/canactivate.guard";
+import { CanActivateGuard } from "./shared/services/canactivate.guard";
 
 // Components
-import { HomeComponent } from './components/home.component';
-import { ErrorComponent } from "./components/error.component";
-import { LoginComponent } from "./components/login.component";
-import { UsersComponent } from "./users/components/users.component";
+import { HomeComponent } from "./home/home.component";
+import { ErrorComponent } from "./shared/components/error.component";
+import { LoginComponent } from "./auth/login.component";
 
 const appRoutes: Routes = [
-  {path: '', redirectTo: '/home', pathMatch: 'full'},
-  {path: 'home', component: HomeComponent},
+  {path: '', component: HomeComponent, canActivate: [CanActivateGuard],
+    children: [
+      {path: '', loadChildren: 'app/users/users.module#UsersModule', canLoad: [CanActivateGuard]}
+    ]
+  },
+  {path: '**', component: ErrorComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'users', component: UsersComponent, canActivate: [CanActivateGuard]},
-  {path: '**', component: ErrorComponent}
+  {path: 'home', component: HomeComponent, canActivate: [CanActivateGuard]}
 ];
 
 export const appRoutingProviders: any[] = [];

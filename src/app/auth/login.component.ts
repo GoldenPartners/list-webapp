@@ -1,10 +1,10 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from './auth.service';
 
 @Component({
     selector: 'login',
-    templateUrl: '../views/login.component.html',
+    templateUrl: './login.component.html',
     providers: [AuthService]
 })
 export class LoginComponent {

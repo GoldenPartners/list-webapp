@@ -4,19 +4,18 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 // Routing
-import { routing, appRoutingProviders } from "./app.routing";
+import { routing, appRoutingProviders } from './app.routing';
 
 // Components
 import { AppComponent } from './app.component';
-import { ErrorComponent } from "./components/error.component";
-import { HomeComponent } from './components/home.component';
-import { NavBarComponent } from "./components/navbar.component";
-import { LoginComponent } from "./components/login.component";
-import { UsersComponent } from "./users/components/users.component";
+import { ErrorComponent } from './shared/components/error.component';
+import { HomeComponent } from './home/home.component';
+import { NavBarComponent } from './shared/components/navbar.component';
+import { LoginComponent } from './auth/login.component';
 
 // Services
-import { AuthService } from "./services/auth.service";
-import { CanActivateGuard} from "./guards/canactivate.guard";
+import { AuthService } from './auth/auth.service';
+import { CanActivateGuard} from './shared/services/canactivate.guard';
 
 @NgModule({
   declarations: [
@@ -24,8 +23,7 @@ import { CanActivateGuard} from "./guards/canactivate.guard";
     ErrorComponent,
     HomeComponent,
     NavBarComponent,
-    LoginComponent,
-    UsersComponent
+    LoginComponent
   ],
   imports: [
     BrowserModule,
