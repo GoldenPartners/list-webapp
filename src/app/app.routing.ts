@@ -10,7 +10,8 @@ import { LoginComponent } from "./auth/login.component";
 const appRoutes: Routes = [
   {path: '', component: HomeComponent, canActivate: [CanActivateGuard],
     children: [
-      {path: '', loadChildren: 'app/users/users.module#UsersModule', canLoad: [CanActivateGuard]}
+      { path: '', redirectTo: 'users', pathMatch: 'full' },
+      {path: 'users', loadChildren: 'app/users/users.module#UsersModule', canLoad: [CanActivateGuard]}
     ]
   },
   {path: '**', component: ErrorComponent},
