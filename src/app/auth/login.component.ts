@@ -26,7 +26,7 @@ export class LoginComponent {
       result => {
         if (result === true) {
             // login successful
-            this.router.navigate(['home']);
+            this.router.navigate(['']);
         } else {
             // login failed
             this.error = 'Username or password is incorrect';

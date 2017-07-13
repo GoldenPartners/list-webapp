@@ -17,10 +17,10 @@ import { UserListComponent } from "./components/user-list.component";
     UserComponent,
     UserListComponent
   ],
-  exports: [
-    UserComponent,
-    UserListComponent
-  ],
+  // exports: [
+  //   UserComponent,
+  //   UserListComponent
+  // ],
   providers: [usersRoutingProviders]
 })
 export class UsersModule { }

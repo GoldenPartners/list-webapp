@@ -1,23 +1,24 @@
 import { ModuleWithProviders } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
-import { CanActivateGuard } from "./shared/services/canactivate.guard";
+import { CanAccessGuard } from "./shared/services/can-access.guard";
 
 // Components
-import { HomeComponent } from "./home/home.component";
-import { ErrorComponent } from "./shared/components/error.component";
 import { LoginComponent } from "./auth/login.component";
+import { HomeComponent } from "./home/home.component";
+import { UserListComponent } from "./users/components/user-list.component";
 
 const appRoutes: Routes = [
-  {path: '', component: HomeComponent, canActivate: [CanActivateGuard],
+  {path: '', component: HomeComponent, canActivate: [CanAccessGuard],
     children: [
-      { path: '', redirectTo: 'users', pathMatch: 'full' },
-      {path: 'users', loadChildren: 'app/users/users.module#UsersModule', canLoad: [CanActivateGuard]}
+      {path: '', redirectTo: 'events', pathMatch: 'full'},
+      {path: 'events', loadChildren: 'app/events/events.module#EventsModule', canLoad: [CanAccessGuard]}
     ]
   },
-  {path: '**', component: ErrorComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'home', component: HomeComponent, canActivate: [CanActivateGuard]}
+  {path: '**', component: HomeComponent, canActivate: [CanAccessGuard]}
 ];
 
 export const appRoutingProviders: any[] = [];
 export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);
+
+// TODO: probar cargar un componente conmun para el path '' y dejar la carga del children module para la accion de un boton del navbar!

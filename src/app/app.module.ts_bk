@@ -8,20 +8,22 @@ import { routing, appRoutingProviders } from './app.routing';
 
 // Components
 import { AppComponent } from './app.component';
-import { LoginComponent } from "./auth/login.component";
-import { HomeComponent } from "./home/home.component";
-import { NavBarComponent } from "./shared/components/navbar.component";
+import { ErrorComponent } from './shared/components/error.component';
+import { HomeComponent } from './home/home.component';
+import { NavBarComponent } from './shared/components/navbar.component';
+import { LoginComponent } from './auth/login.component';
 
 // Services
-import { AuthService } from "./auth/auth.service";
-import { CanAccessGuard } from "./shared/services/can-access.guard";
+import { AuthService } from './auth/auth.service';
+import { CanActivateGuard} from './shared/services/canactivate.guard';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
+    ErrorComponent,
     HomeComponent,
-    NavBarComponent
+    NavBarComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +34,7 @@ import { CanAccessGuard } from "./shared/services/can-access.guard";
   providers: [
     appRoutingProviders,
     AuthService,
-    CanAccessGuard
+    CanActivateGuard
   ],
   bootstrap: [AppComponent]
 })

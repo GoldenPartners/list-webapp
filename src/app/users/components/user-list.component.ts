@@ -16,10 +16,11 @@ export class UserListComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log('user list');
     this.userService.getUsers()
       .then(
         resp => this.users = resp,
         error => {console.error('An error occurred in dashboard component, navigating to login: ', error);}
       );
-}
+  }
 }
