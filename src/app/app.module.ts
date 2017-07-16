@@ -11,17 +11,21 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from "./auth/login.component";
 import { HomeComponent } from "./home/home.component";
 import { NavBarComponent } from "./shared/components/navbar.component";
+import { ErrorComponent } from "./shared/components/error.component";
+import { WelcomeComponent } from "./home/welcome.component";
 
 // Services
 import { AuthService } from "./auth/auth.service";
-import { CanAccessGuard } from "./shared/services/can-access.guard";
+import { AuthenticationGuard } from "./shared/services/authentication.guard";
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HomeComponent,
-    NavBarComponent
+    NavBarComponent,
+    ErrorComponent,
+    WelcomeComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +36,7 @@ import { CanAccessGuard } from "./shared/services/can-access.guard";
   providers: [
     appRoutingProviders,
     AuthService,
-    CanAccessGuard
+    AuthenticationGuard
   ],
   bootstrap: [AppComponent]
 })

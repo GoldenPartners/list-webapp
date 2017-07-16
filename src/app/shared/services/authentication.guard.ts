@@ -3,7 +3,7 @@ import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, CanLo
 import { AuthService } from '../../auth/auth.service';
 
 @Injectable()
-export class CanAccessGuard implements CanActivate {
+export class AuthenticationGuard implements CanActivate {
 
   constructor(private router: Router, private authService: AuthService) {}
 
@@ -18,9 +18,7 @@ export class CanAccessGuard implements CanActivate {
   }
 
   canLoad(route: Route): boolean {
-    console.log("canLoad...");
-    let url = `/${route.path}`;
-    //return this.checkLogin(url);
+    // let url = `/${route.path}`;
     return this.authService.isLogged();
   }
 }

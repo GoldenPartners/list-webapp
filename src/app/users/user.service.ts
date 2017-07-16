@@ -4,9 +4,9 @@ import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
-import { AuthService } from "../../auth/auth.service";
-import { GLOBAL } from "../../shared/services/global";
-import { User } from "../models/user";
+import { AuthService } from "../auth/auth.service";
+import { GLOBAL } from "../shared/services/global";
+import { User } from "./models/user";
 
 @Injectable()
 export class UserService {
@@ -23,11 +23,12 @@ export class UserService {
     return Promise.reject(error.message || error);
   }
 
-  getUsers(): Promise<Array<User>> {
+  getUsers() /*: Promise<Array<User>>*/ {
      return this.http
       .get(this.url, {headers: this.headers})
       .toPromise()
-      .then(response => response.json()._embedded.users as User[])
+      // .then(response => console.log(response))
+      .then(response => response.json() as User[])
       .catch(this.handleError);
   }
 
@@ -56,8 +57,8 @@ export class UserService {
       .catch(this.handleError);
   }
 
-  deleteUser(id: number): Promise<void> {
-    const url = `${this.url}/${id}`;
+  deleteUser(id: string): Promise<void> {
+    const url = `${this.url}${id}`;
     return this.http
       .delete(url, {headers: this.headers})
       .toPromise()

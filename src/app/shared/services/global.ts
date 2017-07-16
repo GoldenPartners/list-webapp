@@ -1,3 +1,5 @@
+import { environment } from "../../../environments/environment";
+
 export var GLOBAL = {
-  url_api: 'http://localhost:8080'
+  url_api: environment.url_api
 }

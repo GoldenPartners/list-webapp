@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from "../services/user.service";
-import { User } from "../models/user";
+import { UserService } from "./user.service";
+import { User } from "./models/user";
 
 @Component({
     selector: 'user-list',
-    templateUrl: '../views/user-list.component.html',
-    providers: []
+    templateUrl: './user-list.component.html',
+    providers: [UserService]
 })
 export class UserListComponent implements OnInit {
   public msg: String;
@@ -13,13 +13,22 @@ export class UserListComponent implements OnInit {
 
   constructor(private userService: UserService) {
     this.msg = 'List of Users!';
+    this.users = new Array<User>();
   }
 
   ngOnInit() {
-    console.log('user list');
+    this.loadUsers();
+  }
+
+  deleteUser(id: string) {
+    this.userService.deleteUser(id);
+    this.loadUsers();
+  }
+
+  private loadUsers(): void {
     this.userService.getUsers()
       .then(
-        resp => this.users = resp,
+        resp => { this.users = resp; },
         error => {console.error('An error occurred in dashboard component, navigating to login: ', error);}
       );
   }

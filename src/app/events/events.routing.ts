@@ -10,4 +10,4 @@ const eventsRoutes: Routes = [
 ];
 
 export const eventsRoutingProviders: any[] = [];
-export const eventsRouting: ModuleWithProviders = RouterModule.forRoot(eventsRoutes);
+export const eventsRouting: ModuleWithProviders = RouterModule.forChild(eventsRoutes);
