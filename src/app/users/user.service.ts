@@ -7,6 +7,7 @@ import 'rxjs/add/observable/throw';
 import { AuthService } from "../auth/auth.service";
 import { GLOBAL } from "../shared/services/global";
 import { User } from "./models/user";
+import { Role } from "./models/role";
 
 @Injectable()
 export class UserService {
@@ -23,7 +24,7 @@ export class UserService {
     return Promise.reject(error.message || error);
   }
 
-  getUsers() /*: Promise<Array<User>>*/ {
+  getUsers(): Promise<Array<User>> {
      return this.http
       .get(this.url, {headers: this.headers})
       .toPromise()
@@ -32,10 +33,10 @@ export class UserService {
       .catch(this.handleError);
   }
 
-  getUser(id: number): Promise<User> {
-    const url = `${this.url}/${id}`;
+  getUser(id: string): Promise<User> {
+    const url = `${this.url}${id}`;
     return this.http
-      .get(url + '/' + id, {headers: this.headers})
+      .get(url, {headers: this.headers})
       .toPromise()
       .then(response => response.json() as User)
       .catch(this.handleError);
@@ -64,5 +65,13 @@ export class UserService {
       .toPromise()
       .then(() => null)
       .catch(this.handleError);
+  }
+
+  getRoles(): Array<Role> {
+    return [
+      new Role('admin', 'Admin'),
+      new Role('rrpp', 'RRPP'),
+      new Role('receptionist', 'Receptionist')
+    ]
   }
 }

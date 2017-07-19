@@ -1,16 +1,22 @@
 <h2>{{msg}}</h2>
 
 <form name="form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
-  <label for="firstName">Name</label>
-  <input type="text" name="name" [(ngModel)]="model.name" #name="ngModel" required />
+  <div>
+    <label for="firstName">Name</label>
+    <input type="text" name="name" [(ngModel)]="user.name" #name="ngModel" required />
+  </div>
   <div *ngIf="f.submitted && !name.valid" class="help-block">Name is required</div>
 
-  <label for="firstName">Email</label>
-  <input type="text" name="email" [(ngModel)]="model.email" #email="ngModel" required />
+  <div>
+    <label for="firstName">Email</label>
+    <input type="text" name="email" [(ngModel)]="user.email" #email="ngModel" required />
+  </div>
   <div *ngIf="f.submitted && !email.valid" class="help-block">Email is required</div>
 
-  <label for="firstName">Phone</label>
-  <input type="text" name="phone" [(ngModel)]="model.phone" #phone="ngModel" required />
+  <div>
+    <label for="firstName">Phone</label>
+    <input type="text" name="phone" [(ngModel)]="user.phone" #phone="ngModel" required />
+  </div>
   <div *ngIf="f.submitted && !phone.valid" class="help-block">Phone is required</div>
 
   <button [disabled]="loading" class="btn btn-primary">Register</button>

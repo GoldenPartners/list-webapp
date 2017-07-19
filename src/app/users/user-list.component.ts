@@ -21,8 +21,12 @@ export class UserListComponent implements OnInit {
   }
 
   deleteUser(id: string) {
-    this.userService.deleteUser(id);
-    this.loadUsers();
+    this.userService.deleteUser(id)
+      .then(
+        resp => { this.loadUsers(); },
+        error => {console.error('An error occurred in dashboard component, navigating to login: ', error);}
+      );
+
   }
 
   private loadUsers(): void {
