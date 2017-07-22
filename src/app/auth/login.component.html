@@ -1,32 +1,33 @@
 <div class="container">
-  <div class="col-md-6 col-md-offset-3">
-    <div class="jumbotron">
-      <h2 align="center">Login to list!</h2>
+    <div class="card-panel brown lighten-5 hoverable">
+      <h3 class="center-align">Login to list!</h3>
 
       <form name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
 
-        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
-          <label for="username">Username</label>
-          <input type="text" class="form-control" name="username" [(ngModel)]="model.username" #username="ngModel" required />
-          <span *ngIf="f.submitted && !username.valid" class="help-block">Username is required</span>
+        <div class="row">
+          <div class="input-field col s12" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+            <input placeholder="pepito@email.com" type="text" class="validate" name="username" [(ngModel)]="model.username" #username="ngModel" required/>
+            <label for="username">Username</label>
+            <span *ngIf="f.submitted && !username.valid" class="red-text">Username is required</span>
+          </div>
         </div>
 
-        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
-          <label for="password">Password&nbsp;</label>
-          <input type="password" class="form-control" name="password" [(ngModel)]="model.password" #password="ngModel" required />
-          <span *ngIf="f.submitted && !password.valid" class="help-block">Password is required</span>
+        <div class="row">
+          <div class="input-field col s12" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+            <input placeholder="***********" type="password" class="validate" name="password" [(ngModel)]="model.password" #password="ngModel" required/>
+            <label for="password">Password&nbsp;</label>
+            <span *ngIf="f.submitted && !password.valid" class="red-text">Password is required</span>
+          </div>
         </div>
 
-        <div class="form-group">
-          <button [disabled]="loading" class="btn btn-block btn-default">Login</button>
+        <div class="form-group center-align">
+          <button [disabled]="loading" class="btn"><i class="material-icons left">lock_open</i>Login</button>
           <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
         </div>
 
-        <div *ngIf="error" class="alert alert-danger" role="alert">
-          <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-          {{error}}
+        <div *ngIf="error" class="red-text">
+          <span><i class="material-icons left">error</i>{{error}}</span>
         </div>
       </form>
     </div>
-  </div>
 </div>
