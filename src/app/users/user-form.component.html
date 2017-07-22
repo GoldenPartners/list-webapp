@@ -24,12 +24,12 @@
       </div>
 
       <div class="row">
-        <div class="input-field col s6" [ngClass]="{ 'has-error': f.submitted && !name.valid }">
+        <div class="input-field col s12 m6 l6" [ngClass]="{ 'has-error': f.submitted && !name.valid }">
           <input placeholder="Juan Perez" type="text" class="validate" name="name" [(ngModel)]="model.name" #name="ngModel" required/>
           <label for="name">Name</label>
           <span *ngIf="f.submitted && !name.valid" class="red-text">Name invalid!</span>
         </div>
-        <div class="input-field col s6" [ngClass]="{ 'has-error': f.submitted && !phone.valid }">
+        <div class="input-field col s12 m6 l6" [ngClass]="{ 'has-error': f.submitted && !phone.valid }">
           <input placeholder="341 6 123123" type="text" class="validate" name="phone" [(ngModel)]="model.phone" #phone="ngModel" required/>
           <label for="phone">Phone</label>
           <span *ngIf="f.submitted && !phone.valid" class="red-text">Phone invalid!</span>
@@ -37,7 +37,7 @@
       </div>
 
       <div class="row">
-        <div class="input-field col s6" [ngClass]="{ 'has-error': f.submitted && !roles.valid }">
+        <div class="input-field col s12 m6 l6">
           <select multiple>
             <option value="" disabled selected>Choose your option</option>
             <option value="rrpp">RRPP</option>
@@ -47,7 +47,7 @@
           <label for="roles">Roles</label>
           <span *ngIf="f.submitted && !roles.valid" class="red-text">Role invalid!</span>
         </div>
-        <div class="input-field col s6">
+        <div class="input-field col s12 m6 l6">
           <div class="switch">
             <label>Off<input type="checkbox"/><span class="lever"></span>On</label>
           </div>
