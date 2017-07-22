@@ -1,24 +1,61 @@
-<h2>{{msg}}</h2>
-
-<form name="form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
-  <div>
-    <label for="firstName">Name</label>
-    <input type="text" name="name" [(ngModel)]="user.name" #name="ngModel" required />
+<div class="container">
+  <div class="row">
+    <div class="col s12 m6 l7">
+      <h2 class="center-align">{{form_title}}</h2>
+    </div>
+    <div class="col s12 m6 l5">
+      <p class="right-align">
+        <a class="btn" [routerLink]="['/users']"><i class="material-icons left">keyboard_arrow_left</i>Back</a>
+      </p>
+    </div>
   </div>
-  <div *ngIf="f.submitted && !name.valid" class="help-block">Name is required</div>
 
-  <div>
-    <label for="firstName">Email</label>
-    <input type="text" name="email" [(ngModel)]="user.email" #email="ngModel" required />
+  <div class="divider"></div>
+
+  <div class="row">
+    <form class="col s12" name="form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
+
+      <div class="row">
+        <div class="input-field col s12" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
+          <input placeholder="juanperez@email.com" type="text" class="validate" name="email" [(ngModel)]="model.email" #email="ngModel" required/>
+          <label for="email">Email</label>
+          <span *ngIf="f.submitted && !email.valid" class="red-text">Email invalid!</span>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s6" [ngClass]="{ 'has-error': f.submitted && !name.valid }">
+          <input placeholder="Juan Perez" type="text" class="validate" name="name" [(ngModel)]="model.name" #name="ngModel" required/>
+          <label for="name">Name</label>
+          <span *ngIf="f.submitted && !name.valid" class="red-text">Name invalid!</span>
+        </div>
+        <div class="input-field col s6" [ngClass]="{ 'has-error': f.submitted && !phone.valid }">
+          <input placeholder="341 6 123123" type="text" class="validate" name="phone" [(ngModel)]="model.phone" #phone="ngModel" required/>
+          <label for="phone">Phone</label>
+          <span *ngIf="f.submitted && !phone.valid" class="red-text">Phone invalid!</span>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s6" [ngClass]="{ 'has-error': f.submitted && !roles.valid }">
+          <select multiple>
+            <option value="" disabled selected>Choose your option</option>
+            <option value="rrpp">RRPP</option>
+            <option value="receptionist">Receptionist</option>
+            <option value="admin">Admin</option>
+          </select>
+          <label for="roles">Roles</label>
+          <span *ngIf="f.submitted && !roles.valid" class="red-text">Role invalid!</span>
+        </div>
+        <div class="input-field col s6">
+          <div class="switch">
+            <label>Off<input type="checkbox"/><span class="lever"></span>On</label>
+          </div>
+        </div>
+      </div>
+
+      <button [disabled]="loading" class="btn btn-primary">Register</button>
+      <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+    </form>
   </div>
-  <div *ngIf="f.submitted && !email.valid" class="help-block">Email is required</div>
-
-  <div>
-    <label for="firstName">Phone</label>
-    <input type="text" name="phone" [(ngModel)]="user.phone" #phone="ngModel" required />
-  </div>
-  <div *ngIf="f.submitted && !phone.valid" class="help-block">Phone is required</div>
-
-  <button [disabled]="loading" class="btn btn-primary">Register</button>
-  <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-</form>
+</div>

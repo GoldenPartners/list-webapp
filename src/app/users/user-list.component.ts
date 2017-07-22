@@ -8,16 +8,21 @@ import { User } from "./models/user";
     providers: [UserService]
 })
 export class UserListComponent implements OnInit {
-  public msg: String;
+  public title: String;
   public users: Array<User>;
+  public confirm_delete: string;
 
   constructor(private userService: UserService) {
-    this.msg = 'List of Users!';
+    this.title = 'List of Users!';
     this.users = new Array<User>();
   }
 
   ngOnInit() {
     this.loadUsers();
+  }
+
+  deleteConfirm(id: string) {
+    this.confirm_delete = id;
   }
 
   deleteUser(id: string) {
