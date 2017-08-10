@@ -1,4 +1,5 @@
 <div class="container">
+  <!-- Header -->
   <div class="row">
     <div class="col s12 m6 l7">
       <h3 class="center-align">{{title}}</h3>
@@ -9,7 +10,10 @@
       </p>
     </div>
   </div>
+
   <div class="divider"></div>
+
+  <!-- Users Table -->
   <div class="row">
     <table class="striped centered">
       <thead>
@@ -21,7 +25,7 @@
       </thead>
       <tbody *ngIf="users">
         <tr *ngFor="let user of users">
-          <td>{{user.name}}</td>
+          <td><a class="modal-trigger" href="#userModal" (click)="modalTrigger(user)">{{user.name}}</a></td>
           <td>{{user.email}}</td>
           <td>
             <div *ngIf="confirm_delete != user.id">
@@ -29,7 +33,7 @@
               <a class="btn red" (click)="deleteConfirm(user.id)"><i class="material-icons">delete_forever</i></a>
             </div>
             <div *ngIf="confirm_delete == user.id">
-              <a (click)="deleteUser(post.id)" class="btn btn-floating"><i class="material-icons">check</i></a>
+              <a (click)="deleteUser(user.id)" class="btn btn-floating"><i class="material-icons">check</i></a>
               Sure?
               <a (click)="deleteConfirm(null)" class="btn btn-floating"><i class="material-icons">close</i></a>
             </div>
@@ -37,8 +41,22 @@
         </tr>
       </tbody>
       <tbody *ngIf="users.length == 0">
-        <p>The list of users is empty.</p>
+        <p>Loading...</p>
       </tbody>
     </table>
+  </div>
+</div>
+
+<!-- User Modal Structure -->
+<div id="userModal" class="modal">
+  <div class="modal-content">
+    <h4>{{user.name}}</h4>
+    <p>Email: {{user.email}}</p>
+    <p>Phone: {{user.phone}}</p>
+    <p>Enabled: {{user.enabled}}</p>
+    <p>Roles: {{user.roles}}</p>
+  </div>
+  <div class="modal-footer">
+    <a class="modal-action modal-close waves-effect waves-green btn-flat">Ok</a>
   </div>
 </div>
