@@ -3,16 +3,20 @@
     <a [routerLink]="['']" class="brand-logo">&nbsp;{{brand}}</a>
     <a href="#" data-activates="nav-menu" class="button-collapse"><i class="material-icons">menu</i></a>
     <ul class="right hide-on-med-and-down">
-      <li *ngIf="checkRole('admin')"><a [routerLink]="['/users']">Users</a></li>
-      <li><a href="#">Events</a></li>
+      <li *ngIf="checkRole(['admin','boss'])"><a [routerLink]="['/users']">Users</a></li>
+      <li *ngIf="checkRole(['admin'])"><a [routerLink]="['/events']">Events</a></li>
+      <!-- <li *ngIf="checkRole('admin') || checkRole('boss')"><a [routerLink]="['/users']">Users</a></li>
+      <li *ngIf="checkRole('admin')"><a [routerLink]="['/events']">Events</a></li> -->
       <li><a href="#">Lists</a></li>
       <li><a href="#">Reception</a></li>
       <li><a href="#">Metrics</a></li>
       <li><a (click)="logout()"><i class="material-icons right">exit_to_app</i>Logout</a></li>
     </ul>
     <ul class="side-nav" id="nav-menu">
-      <li *ngIf="checkRole('admin')"><a [routerLink]="['/users']">Users</a></li>
-      <li><a href="#">Events</a></li>
+      <li *ngIf="checkRole(['admin','boss'])"><a [routerLink]="['/users']">Users</a></li>
+      <li *ngIf="checkRole(['admin'])"><a [routerLink]="['/events']">Events</a></li>
+      <!-- <li *ngIf="checkRole('admin') || checkRole('boss')"><a [routerLink]="['/users']">Users</a></li>
+      <li *ngIf="checkRole('admin')"><a [routerLink]="['/events']">Events</a></li> -->
       <li><a href="#">Lists</a></li>
       <li><a href="#">Reception</a></li>
       <li><a href="#">Metrics</a></li>

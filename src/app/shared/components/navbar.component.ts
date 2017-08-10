@@ -26,8 +26,16 @@ export class NavBarComponent {
     this.loged = this.authService.isLogged();
   }
 
-  checkRole(role: String): Boolean {
-    return this.authService.currentUserIs(role);
+  checkRole(roles: string[]): boolean {
+    var result: boolean = false;
+
+    roles.forEach(role => {
+      if (this.authService.currentUserIs(role)) {
+        result = true;
+      }
+    });
+
+    return result;
   }
 
   logout() {
