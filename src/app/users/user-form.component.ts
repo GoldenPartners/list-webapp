@@ -23,11 +23,12 @@ export class UserFormComponent implements OnInit {
   msg: string;
   success: boolean;
   error: boolean;
+  change_boss: boolean;
 
   constructor(private route: ActivatedRoute, private userService: UserService, private authService: AuthService) {
     this.form_title = 'New User!';
     this.model = new User(null, '', null, '', '', true, null, new Array<UserRole>());
-    this.loading = this.isEdit = this.success = this.error = false;
+    this.loading = this.isEdit = this.success = this.error = this.change_boss = false;
   }
 
   ngOnInit() {
@@ -97,6 +98,10 @@ export class UserFormComponent implements OnInit {
   private edit() {
     console.log('Edit User');
     console.log(this.model);
+
+    if (this.change_boss) {
+      this.model.boss = new User(this.authService.getLoggedUser().id, this.authService.getLoggedUser().email, null, this.authService.getLoggedUser().name, null, null, null, null);
+    }
 
     this.userService.updateUser(this.model)
       .then(

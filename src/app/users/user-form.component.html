@@ -56,12 +56,25 @@
 
       <div class="row">
         <div class="col s12 m6 l6">
-          <label>State</label>
-          <div class="switch">
-            <label>Disabled
-              <input type="checkbox" #enabled [checked]="model.enabled" (change)="model.enabled = enabled.checked">
-              <span class="lever"></span>
-            Enabled</label>
+          <div class="row" *ngIf="isEdit && checkRole(['boss']) && is('rrpp')">
+            <div class="col s12">
+              <label for="change_boss">RRPP Boss Assignment</label>
+              <p>
+                <input type="checkbox" id="change_boss" #changeBosscb (change)="change_boss = changeBosscb.checked"/>
+                <label for="change_boss">Assign this rrpp to me</label>
+              </p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s12">
+              <label>State</label>
+              <div class="switch">
+                <label>Disabled
+                  <input type="checkbox" #enabled [checked]="model.enabled" (change)="model.enabled = enabled.checked">
+                  <span class="lever"></span>
+                  Enabled</label>
+                </div>
+            </div>
           </div>
         </div>
         <div class="col s12 m6 l6">
