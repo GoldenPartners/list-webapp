@@ -12,7 +12,7 @@ export class AuthService {
   private url: string;
   private headers: Headers;
 
-  constructor(public http: Http) {
+  constructor(private http: Http) {
     this.url = GLOBAL.url_api + "/auth";
     this.headers = new Headers({'Content-Type': 'application/json'});
   }
@@ -65,12 +65,28 @@ export class AuthService {
     return r ? true : false;
   }
 
+  currentUserIsSomeRole(roles: string[]) : boolean {
+    var result: boolean = false;
+
+    roles.forEach(role => {
+      if (this.currentUserIs(role)) {
+        result = true;
+      }
+    });
+
+    return result;
+  }
+
+  getLoggedUser() : User {
+    return JSON.parse(localStorage.getItem('currentUser'));
+  }
+
   private makeUser(authResp): User {
     let authorities = new Array<String>();
     authResp.user.authorities.forEach(function(item, index, array) {
       authorities.push(item.authority);
     });
 
-    return new User(authResp.user.name, authResp.user.email, authResp.user.phone, authResp.user.enabled, authResp.token, authorities);
+    return new User(authResp.user.id, authResp.user.name, authResp.user.email, authResp.user.phone, authResp.user.enabled, authResp.token, authorities);
   }
 }

@@ -27,15 +27,16 @@ export class NavBarComponent {
   }
 
   checkRole(roles: string[]): boolean {
-    var result: boolean = false;
-
-    roles.forEach(role => {
-      if (this.authService.currentUserIs(role)) {
-        result = true;
-      }
-    });
-
-    return result;
+    // var result: boolean = false;
+    //
+    // roles.forEach(role => {
+    //   if (this.authService.currentUserIs(role)) {
+    //     result = true;
+    //   }
+    // });
+    //
+    // return result;
+    return this.authService.currentUserIsSomeRole(roles);
   }
 
   logout() {

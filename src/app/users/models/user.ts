@@ -8,6 +8,7 @@ export class User {
     public name: String,
     public phone: String,
     public enabled: Boolean,
+    public boss: User,
     public roles: Array<UserRole>
   ) {}
 }

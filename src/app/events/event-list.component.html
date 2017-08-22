@@ -1,0 +1,62 @@
+<div class="container">
+  <!-- Header -->
+  <div class="row">
+    <div class="col s12 m6 l7">
+      <h3 class="center-align">{{title}}</h3>
+    </div>
+    <div class="col s12 m6 l5">
+      <p class="right-align">
+        <a class="btn" [routerLink]="['/events/add']"><i class="material-icons left">add</i>Add Event</a>
+      </p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Events Table -->
+  <!-- <div class="row">
+    <table class="striped centered">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody *ngIf="users">
+        <tr *ngFor="let user of users">
+          <td><a class="modal-trigger" href="#userModal" (click)="modalTrigger(user)">{{user.name}}</a></td>
+          <td>{{user.email}}</td>
+          <td>
+            <div *ngIf="confirm_delete != user.id">
+              <a class="btn" [routerLink]="['/users/edit/', user.id]"><i class="material-icons">edit</i></a>
+              <a class="btn red" (click)="deleteConfirm(user.id)"><i class="material-icons">delete_forever</i></a>
+            </div>
+            <div *ngIf="confirm_delete == user.id">
+              <a (click)="deleteUser(post.id)" class="btn btn-floating"><i class="material-icons">check</i></a>
+              Sure?
+              <a (click)="deleteConfirm(null)" class="btn btn-floating"><i class="material-icons">close</i></a>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+      <tbody *ngIf="users.length == 0">
+        <p>Loading...</p>
+      </tbody>
+    </table>
+  </div>
+</div> -->
+
+<!-- User Modal Structure -->
+<div id="userModal" class="modal">
+  <div class="modal-content">
+    <h4>{{user.name}}</h4>
+    <p>Email: {{user.email}}</p>
+    <p>Phone: {{user.phone}}</p>
+    <p>Enabled: {{user.enabled}}</p>
+    <p>Roles: {{user.roles}}</p>
+  </div>
+  <div class="modal-footer">
+    <a class="modal-action modal-close waves-effect waves-green btn-flat">Ok</a>
+  </div>
+</div>

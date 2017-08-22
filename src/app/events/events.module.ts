@@ -1,22 +1,24 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
-//Routing
+// Routing
 import { eventsRouting, eventsRoutingProviders } from "./events.routing";
 
-//Components
-import { EventsComponent } from "./events.component";
+// Components
+import { EventListComponent } from "./event-list.component";
+import { EventFormComponent } from "./event-form.component";
 
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
     eventsRouting
   ],
   declarations: [
-    EventsComponent
+    EventListComponent,
+    EventFormComponent
   ],
-  providers: [
-    eventsRoutingProviders
-  ]
+  providers: [eventsRoutingProviders]
 })
 export class EventsModule { }

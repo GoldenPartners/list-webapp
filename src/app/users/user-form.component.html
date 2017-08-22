@@ -10,10 +10,28 @@
     </div>
   </div>
 
+  <!-- Message -->
+  <div class="row" *ngIf="success||error">
+    <div class="col s12">
+      <div class="card" [class.green]="success" [class.red]="error">
+        <div class="card-content">
+          <div class="row" style="margin-bottom: 0px">
+            <div class="col s10">
+              <strong class="white-text">{{msg}}</strong>
+            </div>
+            <div class="col s2">
+              <a class="btn-flat" (click)="success=error=false"><i class="material-icons white-text">close</i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="divider"></div>
 
   <div class="row">
-    <form class="col s12" name="form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
+    <form class="col s12" name="form" (ngSubmit)="f.form.valid && confirm(); f.submited = false" #f="ngForm" novalidate>
 
       <div class="row">
         <div class="input-field col s12" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
@@ -37,24 +55,43 @@
       </div>
 
       <div class="row">
-        <div class="input-field col s12 m6 l6">
-          <select multiple>
-            <option value="" disabled selected>Choose your option</option>
-            <option value="rrpp">RRPP</option>
-            <option value="receptionist">Receptionist</option>
-            <option value="admin">Admin</option>
-          </select>
-          <label for="roles">Roles</label>
-        </div>
-        <div class="input-field col s12 m6 l6">
+        <div class="col s12 m6 l6">
+          <label>State</label>
           <div class="switch">
-            <label>Off<input type="checkbox"/><span class="lever"></span>On</label>
+            <label>Disabled
+              <input type="checkbox" #enabled [checked]="model.enabled" (change)="model.enabled = enabled.checked">
+              <span class="lever"></span>
+            Enabled</label>
           </div>
+        </div>
+        <div class="col s12 m6 l6">
+          <label for="roles">Roles</label>
+          <p *ngIf="checkRole(['admin'])">
+            <input type="checkbox" id="admin" #admincb (change)="updateRoleList('admin', admincb.checked)" [checked]="is('admin')"/>
+            <label for="admin">Admin</label>
+          </p>
+          <p *ngIf="checkRole(['admin'])">
+            <input type="checkbox" id="boss" #bosscb (change)="updateRoleList('boss', bosscb.checked)" [checked]="is('boss')"/>
+            <label for="boss">Boss</label>
+          </p>
+          <p *ngIf="checkRole(['admin'])">
+            <input type="checkbox" id="receptionist" #receptcb (change)="updateRoleList('receptionist', receptcb.checked)" [checked]="is('receptionist')"/>
+            <label for="receptionist">Receptionist</label>
+          </p>
+          <p *ngIf="checkRole(['boss'])">
+            <input type="checkbox" id="rrpp" #rrppcb (change)="updateRoleList('rrpp', rrppcb.checked)" [checked]="is('rrpp')"/>
+            <label for="rrpp">RRPP</label>
+          </p>
+          <span *ngIf="f.submitted && !is('admin') && !is('boss') && !is('receptionist') && !is('rrpp')" class="red-text">You must select at least one role!</span>
         </div>
       </div>
 
-      <button [disabled]="loading" class="btn btn-primary">Register</button>
-      <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+      <div class="row center-align">
+        <div class="col s12">
+          <button [disabled]="loading" class="btn btn-primary">Confirm</button>
+          <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+        </div>
+      </div>
     </form>
   </div>
 </div>
