@@ -1,0 +1,28 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
+// Routing
+import { settingsRouting, settingsRoutingProviders } from './settings.routing';
+
+// Components
+import { SettingsComponent } from "./settings.component";
+import { ChangePasswordComponent } from "./change-password.component";
+
+// Validators
+import { EqualValidator } from "../shared/directives/equal-validator.directive";
+
+@NgModule({
+  imports: [
+    CommonModule,
+    FormsModule,
+    settingsRouting
+  ],
+  declarations: [
+    SettingsComponent,
+    ChangePasswordComponent,
+    EqualValidator
+  ],
+  providers: [settingsRoutingProviders]
+})
+export class SettingsModule { }

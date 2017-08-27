@@ -79,20 +79,20 @@
         </div>
         <div class="col s12 m6 l6">
           <label for="roles">Roles</label>
-          <p *ngIf="checkRole(['admin'])">
-            <input type="checkbox" id="admin" #admincb (change)="updateRoleList('admin', admincb.checked)" [checked]="is('admin')"/>
+          <p>
+            <input type="checkbox" id="admin" #admincb (change)="updateRoleList('admin', admincb.checked)" [checked]="is('admin')" [disabled]="!checkRole(['admin'])"/>
             <label for="admin">Admin</label>
           </p>
-          <p *ngIf="checkRole(['admin'])">
-            <input type="checkbox" id="boss" #bosscb (change)="updateRoleList('boss', bosscb.checked)" [checked]="is('boss')"/>
+          <p>
+            <input type="checkbox" id="boss" #bosscb (change)="updateRoleList('boss', bosscb.checked)" [checked]="is('boss')" [disabled]="!checkRole(['admin'])"/>
             <label for="boss">Boss</label>
           </p>
-          <p *ngIf="checkRole(['admin'])">
-            <input type="checkbox" id="receptionist" #receptcb (change)="updateRoleList('receptionist', receptcb.checked)" [checked]="is('receptionist')"/>
+          <p>
+            <input type="checkbox" id="receptionist" #receptcb (change)="updateRoleList('receptionist', receptcb.checked)" [checked]="is('receptionist')" [disabled]="!checkRole(['admin'])"/>
             <label for="receptionist">Receptionist</label>
           </p>
-          <p *ngIf="checkRole(['boss'])">
-            <input type="checkbox" id="rrpp" #rrppcb (change)="updateRoleList('rrpp', rrppcb.checked)" [checked]="is('rrpp')"/>
+          <p>
+            <input type="checkbox" id="rrpp" #rrppcb (change)="updateRoleList('rrpp', rrppcb.checked)" [checked]="is('rrpp')" [disabled]="!checkRole(['boss'])"/>
             <label for="rrpp">RRPP</label>
           </p>
           <span *ngIf="f.submitted && !is('admin') && !is('boss') && !is('receptionist') && !is('rrpp')" class="red-text">You must select at least one role!</span>

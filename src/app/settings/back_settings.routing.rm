@@ -1,0 +1,15 @@
+import { ModuleWithProviders } from "@angular/core";
+import { Routes, RouterModule } from "@angular/router";
+
+// Components
+import { SettingsComponent } from "./settings.component";
+// import { UserFormComponent } from "./user-form.component";
+
+const settingsRoutes: Routes = [
+  {path: '', component: SettingsComponent},
+  // {path: 'add', component: UserFormComponent},
+  // {path: 'edit/:id', component: UserFormComponent}
+];
+
+export const settingsRoutingProviders: any[] = [];
+export const settingsRouting: ModuleWithProviders = RouterModule.forChild(settingsRoutes);

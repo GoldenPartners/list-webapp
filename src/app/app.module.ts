@@ -13,10 +13,15 @@ import { HomeComponent } from "./home/home.component";
 import { NavBarComponent } from "./shared/components/navbar.component";
 import { ErrorComponent } from "./shared/components/error.component";
 import { WelcomeComponent } from "./home/welcome.component";
+import { SettingsComponent } from "./settings/settings.component";
+import { ChangePasswordComponent } from "./settings/change-password.component";
 
 // Services
 import { AuthService } from "./auth/auth.service";
 import { AuthenticationGuard } from "./shared/services/authentication.guard";
+
+// Validators
+import { EqualValidator } from "./shared/directives/equal-validator.directive";
 
 @NgModule({
   declarations: [
@@ -25,7 +30,10 @@ import { AuthenticationGuard } from "./shared/services/authentication.guard";
     HomeComponent,
     NavBarComponent,
     ErrorComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    SettingsComponent,
+    ChangePasswordComponent,
+    EqualValidator
   ],
   imports: [
     BrowserModule,

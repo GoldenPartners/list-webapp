@@ -23,7 +23,7 @@ export class UserService {
     return Promise.reject(error.message || error);
   }
 
-  getUsers(): Promise<Array<User>> {
+  public getUsers(): Promise<Array<User>> {
      return this.http
       .get(this.url, {headers: this.headers})
       .toPromise()
@@ -31,7 +31,7 @@ export class UserService {
       .catch(this.handleError);
   }
 
-  getUser(id: string): Promise<User> {
+  public getUser(id: string): Promise<User> {
     const url = `${this.url}${id}`;
     return this.http
       .get(url, {headers: this.headers})
@@ -40,7 +40,7 @@ export class UserService {
       .catch(this.handleError);
   }
 
-  createUser(user: User): Promise<User> {
+  public createUser(user: User): Promise<User> {
     return this.http
       .post(this.url, JSON.stringify(user), {headers: this.headers})
       .toPromise()
@@ -48,7 +48,7 @@ export class UserService {
       .catch(this.handleError);
   }
 
-  updateUser(user: User): Promise<User> {
+  public updateUser(user: User): Promise<User> {
     return this.http
       .put(this.url, JSON.stringify(user), {headers: this.headers})
       .toPromise()
@@ -56,10 +56,31 @@ export class UserService {
       .catch(this.handleError);
   }
 
-  deleteUser(id: string): Promise<void> {
+  public deleteUser(id: string): Promise<void> {
     const url = `${this.url}${id}`;
     return this.http
       .delete(url, {headers: this.headers})
+      .toPromise()
+      .then(() => null)
+      .catch(this.handleError);
+  }
+
+  public resetPassword(model: any): Promise<void> {
+    let url = this.url + "reset-password";
+    let header = new Headers({'Content-Type': 'application/json'});
+
+    return this.http
+      .put(url, JSON.stringify(model), {headers: header})
+      .toPromise()
+      .then(() => null)
+      .catch(this.handleError);
+  }
+
+  public changePassword(model: any): Promise<void> {
+    let url = this.url + "change-password";
+
+    return this.http
+      .put(url, JSON.stringify(model), {headers: this.headers})
       .toPromise()
       .then(() => null)
       .catch(this.handleError);

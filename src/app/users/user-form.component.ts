@@ -19,7 +19,6 @@ export class UserFormComponent implements OnInit {
   model: User;
   loading: boolean;
   isEdit: boolean;
-  selectedRole: any = {};
   msg: string;
   success: boolean;
   error: boolean;

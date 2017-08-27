@@ -1,1 +1,29 @@
 /* You can add global styles to this file, and also import other style files */
+.tabs .tab a{
+    color: #009688 !important;
+}
+
+.tabs .indicator {
+  background-color: #009688 !important;
+}
+
+/*
+.tabs .tab a {
+  font-weight: 700; para cambiar el grosor de la letra
+  color: #2196f3; cambiamos el color de la letra
+}
+
+.tabs .tab a:hover {
+  color: #8bccff;
+}
+
+ul.tabs div.indicator { para cambiar los estilos de la linea que indica cuando la pestaña esta activa
+  background: #2196f3; cambiamos el color
+  height: 3px; tambien cambiamos el tamaño si queremos
+}
+
+.tabs .tab a.active { tmbien podemos de cambiar el estilo de el elemento activo
+  font-weight: 700;
+  color: #f0132c;
+}
+*/
