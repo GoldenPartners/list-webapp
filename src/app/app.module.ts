@@ -15,6 +15,7 @@ import { ErrorComponent } from "./shared/components/error.component";
 import { WelcomeComponent } from "./home/welcome.component";
 import { SettingsComponent } from "./settings/settings.component";
 import { ChangePasswordComponent } from "./settings/change-password.component";
+import { UserInfoComponent } from "./settings/user-info.component";
 
 // Services
 import { AuthService } from "./auth/auth.service";
@@ -33,6 +34,7 @@ import { EqualValidator } from "./shared/directives/equal-validator.directive";
     WelcomeComponent,
     SettingsComponent,
     ChangePasswordComponent,
+    UserInfoComponent,
     EqualValidator
   ],
   imports: [

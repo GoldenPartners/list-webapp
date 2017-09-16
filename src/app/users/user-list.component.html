@@ -48,15 +48,27 @@
 </div>
 
 <!-- User Modal Structure -->
-<div id="userModal" class="modal">
-  <div class="modal-content">
-    <h4>{{user.name}}</h4>
-    <p>Email: {{user.email}}</p>
-    <p>Phone: {{user.phone}}</p>
-    <p>Enabled: {{user.enabled}}</p>
-    <p>Roles: {{user.roles}}</p>
+<div id="userModal" class="modal teal darken-3">
+  <div class="modal-content white-text center-align">
+    <h5>{{user.name | uppercase}}</h5>
+    <div class="row">
+      <div class="col s12 m6">
+        <p>Email: <strong>{{user.email}}</strong></p>
+      </div>
+      <div class="col s12 m6">
+        <p>Phone: <strong>{{user.phone}}</strong></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12 m6">
+            <p>Roles: <strong>{{userRoles | uppercase}}</strong></p>
+      </div>
+      <div class="col s12 m6">
+        <p>Enabled: <strong>{{user.enabled}}</strong></p>
+      </div>
+    </div>
   </div>
-  <div class="modal-footer">
-    <a class="modal-action modal-close waves-effect waves-green btn-flat">Ok</a>
+  <div class="modal-footer teal darken-2">
+    <a class="modal-action modal-close waves-effect waves-green btn-flat white-text">Ok</a>
   </div>
 </div>

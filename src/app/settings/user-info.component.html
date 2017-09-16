@@ -1,0 +1,11 @@
+<div class="row">
+  <div class="col s12 center-align">
+    <h3>{{model.name}}</h3>
+    <p>{{model.email}}</p>
+    <p>({{model.phone}})</p>
+    <div *ngIf="checkRole(['admin'])" class="chip teal white-text">ADMIN</div>
+    <div *ngIf="checkRole(['boss'])" class="chip teal white-text">BOSS</div>
+    <div *ngIf="checkRole(['rrpp'])" class="chip teal white-text">RRPP</div>
+    <div *ngIf="checkRole(['receptionist'])" class="chip teal white-text">RECEP</div>
+  </div>
+</div>
