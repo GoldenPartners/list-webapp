@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthComponent } from "../../auth/auth.component";
 import { AuthService } from "../../auth/auth.service";
 
 declare var jQuery: any;
@@ -10,11 +11,12 @@ declare var $: any;
   templateUrl: '../views/navbar.component.html',
   providers: [AuthService]
 })
-export class NavBarComponent {
+export class NavBarComponent extends AuthComponent {
   public brand: String;
   public loged: Boolean;
 
   constructor(private authService: AuthService, private router: Router) {
+    super(authService);
     this.brand = 'list!';
   }
 
@@ -24,10 +26,6 @@ export class NavBarComponent {
 
   ngDoCheck() {
     this.loged = this.authService.isLogged();
-  }
-
-  checkRole(roles: string[]): boolean {
-    return this.authService.currentUserIsSomeRole(roles);
   }
 
   logout() {

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
 import { UserService } from "./user.service";
 import { AuthService } from "../auth/auth.service";
+import { AuthComponent } from "../auth/auth.component";
 import { GLOBAL } from "../shared/services/global";
 import { User } from "./models/user";
 import { UserRole } from "./models/user-role";
@@ -14,7 +15,7 @@ declare var $: any;
     templateUrl: './user-form.component.html',
     providers: [UserService]
 })
-export class UserFormComponent implements OnInit {
+export class UserFormComponent extends AuthComponent implements OnInit {
   form_title: string;
   model: User;
   loading: boolean;
@@ -25,6 +26,7 @@ export class UserFormComponent implements OnInit {
   change_boss: boolean;
 
   constructor(private route: ActivatedRoute, private userService: UserService, private authService: AuthService) {
+    super(authService);
     this.form_title = 'New User!';
     this.model = new User(null, '', null, '', '', true, null, new Array<UserRole>());
     this.loading = this.isEdit = this.success = this.error = this.change_boss = false;
@@ -117,10 +119,6 @@ export class UserFormComponent implements OnInit {
           this.loading = false;
         }
       );
-  }
-
-  public checkRole(roles: string[]): boolean {
-    return this.authService.currentUserIsSomeRole(roles);
   }
 
   public updateRoleList(role: string, status: boolean) {
